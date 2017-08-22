@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1
 {
@@ -15,33 +11,53 @@ namespace Lab1
 
             while (doAgain)
             {
-                Console.WriteLine(repeat);
                 roomCalcs();
                 doAgain = goAgain(repeat);
-                Console.WriteLine(repeat);
             }
         }
+
         public static void roomCalcs()
         {
-            float roomLength = 0;
-            float roomWidth = 0;
-            float roomHeight = 0;
+            const int qtyInputs = 3;
+            string testString = "start";
+            //be sure qty of strings in {} to match value of qtyInputs
+            string[] dimension = new string[qtyInputs] {"length", "width", "height"};
+            float[] valid = new float[qtyInputs]; 
 
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("Welcome to Grand Circus' Room detail Generator!\n\n");
-            Console.Write("Enter room length: ");
-            roomLength = float.Parse(Console.ReadLine());
-            Console.Write("Enter room width: ");
-            roomWidth = float.Parse(Console.ReadLine());
-            Console.Write("Enter room height: ");
-            roomHeight = float.Parse(Console.ReadLine());
 
-            Console.WriteLine("\nArea: " + roomLength * roomWidth + " square feet");
-            Console.WriteLine("Perimeter: " + (2 * (roomLength + roomWidth)) + " feet");
-            Console.WriteLine("Volume: " + roomLength * roomWidth * roomHeight + " cubic feet\n");
+            for (int i = 0; i<=(qtyInputs-1); i++)
+            {
+                while (!validFloat(testString))
+                {
+                    Console.Write($"Please enter a valid {dimension[i]} for your room: ");
+                    testString = Console.ReadLine();
+                }
+                valid[i] = float.Parse(testString);
+                testString = "reset";
+            }
 
-            return;
+            Console.WriteLine("\nArea: " + valid[0] * valid[1] + " square feet");
+            Console.WriteLine("Perimeter: " + (2 * (valid[0] + valid[1])) + " feet");
+            Console.WriteLine("Volume: " + valid[0] * valid[1] * valid[2] + " cubic feet\n");
         }
+
+        public static Boolean validFloat(string x)
+        {
+            bool answer;
+            try
+            {
+                float.Parse(x);
+                answer = true;
+            }
+            catch
+            {
+                answer = false;
+            }
+            return answer;
+        }
+
         public static Boolean goAgain(Boolean repeat)
         {
             bool cont = false;
@@ -54,7 +70,6 @@ namespace Lab1
                 {
                     cont = true;
                     returnValue = false;
-                    Console.WriteLine(returnValue);
                 }
                 else if (inputYN == "Y" || inputYN == "y")
                 {
@@ -66,7 +81,6 @@ namespace Lab1
                     Console.WriteLine("Please answer Y/y or N/n only!");
                 }
             }
-            Console.WriteLine(returnValue);
             return returnValue;
         }
 
