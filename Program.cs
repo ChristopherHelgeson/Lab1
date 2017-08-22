@@ -20,7 +20,7 @@ namespace Lab1
         {
             const int qtyInputs = 3;
             string testString = "start";
-            //be sure qty of strings in {} to match value of qtyInputs
+            //be sure qty of strings in {} matches value of qtyInputs above
             string[] dimension = new string[qtyInputs] {"length", "width", "height"};
             float[] valid = new float[qtyInputs]; 
 
