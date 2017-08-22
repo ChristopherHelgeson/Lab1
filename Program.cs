@@ -21,7 +21,7 @@ namespace Lab1
             const int qtyInputs = 3;
             string testString = "start";
             //be sure qty of strings in {} matches value of qtyInputs above
-            string[] dimension = new string[qtyInputs] {"length", "width", "height"};
+            string[] dimension = new string[qtyInputs] {"LENGTH", "WIDTH", "HEIGHT"};
             float[] valid = new float[qtyInputs]; 
 
             Console.Clear();
@@ -50,9 +50,11 @@ namespace Lab1
             {
                 float.Parse(x);
                 answer = true;
+                Console.WriteLine("That's an acceptable value.\n");
             }
             catch
             {
+                Console.WriteLine("Valid input includes any real numerical value.");
                 answer = false;
             }
             return answer;
